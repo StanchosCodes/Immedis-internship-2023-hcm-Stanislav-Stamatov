@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement.WebApi", "HumanCapitalManagement.WebApi\HumanCapitalManagement.WebApi.csproj", "{250EB18B-F18D-4AB5-9037-F492E8DDE042}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanCapitalManagement.WebApi", "HumanCapitalManagement.WebApi\HumanCapitalManagement.WebApi.csproj", "{250EB18B-F18D-4AB5-9037-F492E8DDE042}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{5A1BF123-62D8-4DCF-A0E6-00FFABA00113}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement.Web.ViewModels", "HumanCapitalManagement.Web.ViewModels\HumanCapitalManagement.Web.ViewModels.csproj", "{274F8781-2509-4EF5-B3F5-CDA072B660FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanCapitalManagement.Web.ViewModels", "HumanCapitalManagement.Web.ViewModels\HumanCapitalManagement.Web.ViewModels.csproj", "{274F8781-2509-4EF5-B3F5-CDA072B660FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement.Web", "HumanCapitalManagement.Web\HumanCapitalManagement.Web.csproj", "{1B1F74D9-153C-4395-87D5-25325D3E22C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanCapitalManagement.Web", "HumanCapitalManagement.Web\HumanCapitalManagement.Web.csproj", "{1B1F74D9-153C-4395-87D5-25325D3E22C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B2990FF0-EF3A-45A3-BC22-8A3EAC1D5599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement.Services.Data", "HumanCapitalManagement.Services.Data\HumanCapitalManagement.Services.Data.csproj", "{EFA25048-8D6B-4D31-BA9A-3CB1F61C3503}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanCapitalManagement.Services.Data", "HumanCapitalManagement.Services.Data\HumanCapitalManagement.Services.Data.csproj", "{EFA25048-8D6B-4D31-BA9A-3CB1F61C3503}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D4106589-BD96-489F-A8FC-83CE8B18B4D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement.Data", "HumanCapitalManagement.Data\HumanCapitalManagement.Data.csproj", "{05EF556A-3AAE-4A3F-82B9-2503AC829146}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanCapitalManagement.Data", "HumanCapitalManagement.Data\HumanCapitalManagement.Data.csproj", "{05EF556A-3AAE-4A3F-82B9-2503AC829146}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement.Common", "HumanCapitalManagement.Common\HumanCapitalManagement.Common.csproj", "{5C703084-7882-409A-BD7D-D4236D8CF2A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanCapitalManagement.Common", "HumanCapitalManagement.Common\HumanCapitalManagement.Common.csproj", "{5C703084-7882-409A-BD7D-D4236D8CF2A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement.Web.Infrastructure", "HumanCapitalManagement.Web.Infrastructure\HumanCapitalManagement.Web.Infrastructure.csproj", "{D23138DA-7AD3-4298-B2F2-BFA24E2B9FF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{5C703084-7882-409A-BD7D-D4236D8CF2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C703084-7882-409A-BD7D-D4236D8CF2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C703084-7882-409A-BD7D-D4236D8CF2A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23138DA-7AD3-4298-B2F2-BFA24E2B9FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23138DA-7AD3-4298-B2F2-BFA24E2B9FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23138DA-7AD3-4298-B2F2-BFA24E2B9FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23138DA-7AD3-4298-B2F2-BFA24E2B9FF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{1B1F74D9-153C-4395-87D5-25325D3E22C1} = {5A1BF123-62D8-4DCF-A0E6-00FFABA00113}
 		{EFA25048-8D6B-4D31-BA9A-3CB1F61C3503} = {B2990FF0-EF3A-45A3-BC22-8A3EAC1D5599}
 		{05EF556A-3AAE-4A3F-82B9-2503AC829146} = {D4106589-BD96-489F-A8FC-83CE8B18B4D5}
+		{D23138DA-7AD3-4298-B2F2-BFA24E2B9FF2} = {5A1BF123-62D8-4DCF-A0E6-00FFABA00113}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27D445B4-23B1-4C86-B6FA-DDB06A15E85E}

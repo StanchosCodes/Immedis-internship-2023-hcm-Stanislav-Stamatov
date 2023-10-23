@@ -1,7 +1,16 @@
+using HumanCapitalManagement.Web.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services
+    .AddControllersWithViews()
+    .AddMvcOptions(options =>
+    {
+        options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+    });
 
 var app = builder.Build();
 

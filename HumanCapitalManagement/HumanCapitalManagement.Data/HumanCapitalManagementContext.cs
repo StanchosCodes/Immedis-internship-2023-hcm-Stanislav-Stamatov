@@ -33,10 +33,9 @@ public partial class HumanCapitalManagementContext : DbContext
     {
         modelBuilder.Entity<Department>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Departme__3214EC076C6CECA6");
+            entity.HasKey(e => e.Id).HasName("PK__Departme__3214EC0748D6F0D7");
 
-            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-            entity.Property(e => e.Name).HasMaxLength(30);
+            entity.Property(e => e.Title).HasMaxLength(30);
 
             entity.HasOne(d => d.Manager).WithMany(p => p.Departments)
                 .HasForeignKey(d => d.ManagerId)
@@ -46,15 +45,13 @@ public partial class HumanCapitalManagementContext : DbContext
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3214EC0757BF0981");
+            entity.HasKey(e => e.Id).HasName("PK__Employee__3214EC070D7B0F53");
 
-            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
             entity.Property(e => e.Email).HasMaxLength(60);
             entity.Property(e => e.FirstName).HasMaxLength(30);
             entity.Property(e => e.JobTitle).HasMaxLength(60);
             entity.Property(e => e.LastName).HasMaxLength(30);
             entity.Property(e => e.MiddleName).HasMaxLength(30);
-            entity.Property(e => e.PasswordHash).HasMaxLength(1);
             entity.Property(e => e.Username).HasMaxLength(20);
 
             entity.HasOne(d => d.Department).WithMany(p => p.Employees)
@@ -70,7 +67,7 @@ public partial class HumanCapitalManagementContext : DbContext
             entity.HasOne(d => d.Town).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.TownId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Employees__TownI__3D5E1FD2");
+                .HasConstraintName("FK__Employees__TownI__3B75D760");
 
             entity.HasMany(d => d.Projects).WithMany(p => p.Employees)
                 .UsingEntity<Dictionary<string, object>>(
@@ -78,14 +75,14 @@ public partial class HumanCapitalManagementContext : DbContext
                     r => r.HasOne<Project>().WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Employees__Proje__440B1D61"),
+                        .HasConstraintName("FK__Employees__Proje__412EB0B6"),
                     l => l.HasOne<Employee>().WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Employees__Emplo__4316F928"),
+                        .HasConstraintName("FK__Employees__Emplo__403A8C7D"),
                     j =>
                     {
-                        j.HasKey("EmployeeId", "ProjectId").HasName("PK__Employee__6DB1E4FEA3BB51A8");
+                        j.HasKey("EmployeeId", "ProjectId").HasName("PK__Employee__6DB1E4FE46FEF6B6");
                         j.ToTable("EmployeesProjects");
                     });
 
@@ -95,40 +92,38 @@ public partial class HumanCapitalManagementContext : DbContext
                     r => r.HasOne<Role>().WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__UsersRole__RoleI__4AB81AF0"),
+                        .HasConstraintName("FK__UsersRole__RoleI__46E78A0C"),
                     l => l.HasOne<Employee>().WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__UsersRole__UserI__49C3F6B7"),
+                        .HasConstraintName("FK__UsersRole__UserI__45F365D3"),
                     j =>
                     {
-                        j.HasKey("UserId", "RoleId").HasName("PK__UsersRol__AF2760AD21D56ACD");
+                        j.HasKey("UserId", "RoleId").HasName("PK__UsersRol__AF2760AD6963F40E");
                         j.ToTable("UsersRoles");
                     });
         });
 
         modelBuilder.Entity<Project>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Projects__3214EC079675A7D0");
+            entity.HasKey(e => e.Id).HasName("PK__Projects__3214EC07358E0C35");
 
-            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
             entity.Property(e => e.Description).HasMaxLength(80);
-            entity.Property(e => e.Name).HasMaxLength(30);
-            entity.Property(e => e.Salary).HasColumnType("decimal(18, 0)");
+            entity.Property(e => e.Salary).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.Title).HasMaxLength(30);
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Roles__3214EC07B18B65DC");
+            entity.HasKey(e => e.Id).HasName("PK__Roles__3214EC074E603D6D");
 
-            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
             entity.Property(e => e.Name).HasMaxLength(256);
             entity.Property(e => e.NormalizedName).HasMaxLength(256);
         });
 
         modelBuilder.Entity<Town>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Towns__3214EC0760909871");
+            entity.HasKey(e => e.Id).HasName("PK__Towns__3214EC071225FE7E");
 
             entity.Property(e => e.Name).HasMaxLength(30);
         });

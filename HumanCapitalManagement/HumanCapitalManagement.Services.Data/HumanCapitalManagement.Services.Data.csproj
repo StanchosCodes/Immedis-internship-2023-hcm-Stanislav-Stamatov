@@ -4,10 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>7f1b78a3-e90e-43c5-b3ef-f645a24f6208</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HumanCapitalManagement.Data\HumanCapitalManagement.Data.csproj" />
+    <ProjectReference Include="..\HumanCapitalManagement.Web.ViewModels\HumanCapitalManagement.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

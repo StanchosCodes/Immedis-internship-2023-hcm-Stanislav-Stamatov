@@ -5,7 +5,7 @@ namespace HumanCapitalManagement.Data.Models;
 
 public partial class Employee
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public string FirstName { get; set; } = null!;
 
@@ -27,21 +27,23 @@ public partial class Employee
 
     public DateTime HireDate { get; set; }
 
-    public Guid DepartmentId { get; set; }
+    public int DepartmentId { get; set; }
 
-    public Guid ManagerId { get; set; }
+    public int ManagerId { get; set; }
+
+    public string ImgUrl { get; set; } = null!;
 
     public bool IsEmployed { get; set; }
+
+    public virtual Town Town { get; set; } = null!;
 
     public virtual Department Department { get; set; } = null!;
 
     public virtual Employee Manager { get; set; } = null!;
 
-    public virtual Town Town { get; set; } = null!;
-
     public virtual ICollection<Department> Departments { get; set; } = new List<Department>();
 
-    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>(); //InverseManager - old/original name
+    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>(); // Old/Original Name - InverseManager
 
     public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
 

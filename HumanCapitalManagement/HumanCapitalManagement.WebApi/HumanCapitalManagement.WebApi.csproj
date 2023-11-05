@@ -4,9 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>317bec93-6631-45ba-894e-4d94d1c2d367</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
       <PrivateAssets>all</PrivateAssets>
@@ -17,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HumanCapitalManagement.Data\HumanCapitalManagement.Data.csproj" />
+    <ProjectReference Include="..\HumanCapitalManagement.Services.Data\HumanCapitalManagement.Services.Data.csproj" />
   </ItemGroup>
 
 </Project>

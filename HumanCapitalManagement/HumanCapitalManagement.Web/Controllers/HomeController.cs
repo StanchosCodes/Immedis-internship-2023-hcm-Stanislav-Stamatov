@@ -1,6 +1,7 @@
 ﻿using HumanCapitalManagement.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace HumanCapitalManagement.Web.Controllers
 {
@@ -15,11 +16,20 @@ namespace HumanCapitalManagement.Web.Controllers
 
         public IActionResult Index()
         {
+            // this.HttpContext.Session.SetString("Name", "Shit");
+
             return View();
         }
 
         public IActionResult Privacy()
         {
+            //string? name = this.HttpContext.Session.GetString("Name");
+
+            //if (!String.IsNullOrEmpty(name))
+            //{
+            //    return Ok(name);
+            //}
+
             return View();
         }
 

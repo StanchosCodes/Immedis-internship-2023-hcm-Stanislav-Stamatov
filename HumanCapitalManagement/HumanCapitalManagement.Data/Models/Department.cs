@@ -5,13 +5,15 @@ namespace HumanCapitalManagement.Data.Models;
 
 public partial class Department
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string Title { get; set; } = null!;
 
-    public Guid ManagerId { get; set; }
+    public int ManagerId { get; set; }
 
-    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+    public bool IsDeleted { get; set; }
 
     public virtual Employee Manager { get; set; } = null!;
+
+    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 }

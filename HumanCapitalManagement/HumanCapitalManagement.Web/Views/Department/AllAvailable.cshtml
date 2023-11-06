@@ -1,0 +1,34 @@
+﻿@model IEnumerable<EmployeeViewModel>
+
+@{
+    ViewBag.Title = "Move Employees";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var e in Model)
+    {
+        <div class="card col-4 mb-2 ms-2" style="width: 20rem; ">
+            <div class="card-body">
+                <img class="card-img-top" style="width: 18rem;" src=@e.ImgUrl alt="Employee Image">
+                <h5 class="card-title mt-1">@e.Username</h5>
+                <p class="card-text">@e.FirstName</p>
+                <p class="card-text">@e.MiddleName</p>
+                <p class="card-text">@e.LastName</p>
+            </div>
+
+            <a asp-controller="Department" asp-action="AddEmployee" asp-route-id="@e.Id" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">Move</a>
+        </div>
+    }
+    @if (!Model.Any())
+    {
+        <p>No available employees!</p>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

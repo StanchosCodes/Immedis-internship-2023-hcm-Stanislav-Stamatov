@@ -1,0 +1,52 @@
+﻿@model TownDetailsViewModel
+@using static HumanCapitalManagement.Common.GeneralConstants;
+
+@{
+    ViewBag.Title = "Town Details";
+    string currentUserRole = this.Context.Session.GetString("Role")!;
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="card w-50">
+        <div class="card-body">
+            <img class="card-img-top" style="width: 18rem;" src=@Model.ImgUrl alt="Town Image">
+            <h3 class="card-title text-center mb-5">@Model.Name</h3>
+            <p class="mb-0"><span class="fw-bold mt-5">Employees living in this town: </span>@Model.Employees.Count()</p>
+
+            @foreach (var e in Model.Employees)
+            {
+                <div class="card col-4 mb-2 ms-2" style="width: 20rem; ">
+                    <div class="card-body">
+                        <h5 class="card-title mt-1">Name: @e.FirstName @e.MiddleName @e.LastName</h5>
+                        <h5 class="card-title mt-1">Username: @e.Username</h5>
+                    </div>
+                </div>
+            }
+
+            @if (!Model.Employees.Any())
+            {
+                <p>No employees living in this town!</p>
+            }
+        </div>
+
+        <a asp-controller="Town" asp-action="All" class="btn btn-outline-info mb-2 mt-5 w-100 p-3 fw-bold">Back to all towns</a>
+
+        @if (currentUserRole == AdminRoleName)
+        {
+            <a asp-controller="Town" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Edit</a>
+
+            <form class="input-group-sm " asp-controller="Town" asp-action="Delete" asp-route-id="@Model.Id">
+                <input type="submit" value="Delete the town" class="btn btn-danger mb-2 w-40 p-3 fw-bold text" />
+            </form>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

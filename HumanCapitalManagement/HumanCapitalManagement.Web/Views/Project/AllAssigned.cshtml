@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ProjectViewModel>
+
+@{
+    ViewBag.Title = "All Projects You Are Into";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<p class="text-center text-secondary">You are a part of @Model.Count() projects.</p>
+<hr />
+
+<div class="text-center row">
+    @foreach (var p in Model)
+    {
+        <div class="card col-4 mb-2 ms-2" style="width: 20rem; ">
+            <div class="card-body">
+                <img class="card-img-top" style="width: 18rem;" src=@p.ImgUrl alt="Project Image">
+                <h5 class="card-title mt-1">@p.Title</h5>
+                <p class="card-text">Salary for the project: $@p.Salary</p>
+                <p class="card-text">End date of the project: @p.EndDate</p>
+            </div>
+
+            <a asp-controller="Project" asp-action="Details" asp-route-id="@p.Id" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">View Details</a>
+            <form class="input-group-sm" asp-route-id="@p.Id" asp-controller="Project" asp-action="Leave" method="post">
+                <input type="submit" value="Leave the project" class="fs-6 btn btn-success mb-3 p-2" />
+            </form>
+        </div>
+    }
+    @if (!Model.Any())
+    {
+        <p>You are not assigned to any projects yet!</p>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

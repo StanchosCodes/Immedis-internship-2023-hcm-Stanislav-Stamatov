@@ -1,0 +1,74 @@
+﻿@model EmployeeDetailsViewModel
+@using static HumanCapitalManagement.Common.GeneralConstants;
+
+@{
+    ViewBag.Title = "Employee Details";
+    string currentUserRole = this.Context.Session.GetString("Role")!;
+    string currentUserName = this.Context.Session.GetString("Username")!;
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="card w-50">
+        <div class="card-body">
+            <img class="card-img-top" style="width: 18rem;" src=@Model.ImgUrl alt="Town Image">
+            <h3 class="card-title text-center mb-5">@Model.Username</h3>
+            <p class="card-text">First Name: @Model.FirstName</p>
+            <p class="card-text">Middle Name: @Model.MiddleName</p>
+            <p class="card-text">Last Name: @Model.LastName</p>
+            <p class="card-text">Email: @Model.Email</p>
+            <p class="card-text">Department: @Model.Department</p>
+            <p class="card-text">Job Title: @Model.JobTitle</p>
+            <p class="card-text">Manager: @Model.Manager</p>
+            <p class="card-text">Town: @Model.Town</p>
+            <p class="card-text">Age: @Model.Age</p>
+            
+            @if (Model.Projects.Any())
+            {
+                <p class="card-text">Average Salary: $@((Model.AverageSalary ?? 0).ToString("f2"))</p>
+                <p class="card-text">Involved in: @Model.Projects.Count() @(Model.Projects.Count() > 1 ? "projects" : "project")</p>
+
+                @foreach (var p in Model.Projects)
+                {
+                    <div class="card col-4 mb-2 ms-2" style="width: 20rem; ">
+                        <div class="card-body">
+                            <h5 class="card-title mt-1">@p.Title</h5>
+                            <p class="card-text">Salary: $@p.Salary</p>
+                            <p class="card-text">End Date: @p.EndDate</p>
+                        </div>
+                    </div>
+                }
+            }
+
+            else
+            {
+                <p>Not involved in any project yet!</p>
+            }
+        </div>
+
+        <a asp-controller="Employee" asp-action="All" class="btn btn-outline-info mb-2 mt-5 w-100 p-3 fw-bold">Back to all employees</a>
+
+        @if (currentUserRole == AdminRoleName && (Model.Role != AdminRoleName || Model.Username == currentUserName) || 
+            (currentUserRole == EmployeeRoleName && currentUserName == Model.Username))
+        {
+            <a asp-controller="Employee" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Edit</a>
+
+            <form class="input-group-sm " asp-controller="Employee" asp-action="Delete" asp-route-id="@Model.Id">
+                <input type="submit" value="Delete the employee" class="btn btn-danger mb-2 w-40 p-3 fw-bold text" />
+            </form>
+        }
+
+        @if (currentUserRole == AdminRoleName &&  Model.Role != AdminRoleName)
+        {
+            <a asp-controller="Employee" asp-action="MakeAdmin" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Make Admin</a>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

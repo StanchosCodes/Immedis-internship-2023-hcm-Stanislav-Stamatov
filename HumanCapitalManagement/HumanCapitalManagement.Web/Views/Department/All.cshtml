@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DepartmentViewModel>
+@using static HumanCapitalManagement.Common.GeneralConstants;
+
+@{
+    ViewBag.Title = "All Departments";
+    string currentUserRole = this.Context.Session.GetString("Role")!;
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var d in Model)
+    {
+        <div class="card col-4 mb-2 ms-2" style="width: 20rem; ">
+            <div class="card-body">
+                <h5 class="card-title mt-1">@d.Title</h5>
+                <p class="card-text">Manager: @d.ManagerUsername - @d.ManagerFirstName @d.ManagerMiddleName @d.ManagerLastName</p>
+                <p class="card-text">Employees in this department: @d.Employees.Count()</p>
+            </div>
+
+            <a asp-controller="Department" asp-action="Details" asp-route-id="@d.Id" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">View Details</a>
+        </div>
+    }
+    @if (!Model.Any())
+    {
+        <p>No departments added yet!</p>
+    }
+
+    @if (currentUserRole == AdminRoleName)
+    {
+        <a asp-controller="Department" asp-action="Add" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">Add Department</a>
+    }
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

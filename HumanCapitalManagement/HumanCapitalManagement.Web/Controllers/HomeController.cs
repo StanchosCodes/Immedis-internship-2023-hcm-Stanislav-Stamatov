@@ -16,19 +16,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
         public IActionResult Index()
         {
-            // this.HttpContext.Session.SetString("Name", "Shit");
+            string? currentUserName = this.HttpContext.Session.GetString("Username");
 
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            //string? name = this.HttpContext.Session.GetString("Name");
-
-            //if (!String.IsNullOrEmpty(name))
-            //{
-            //    return Ok(name);
-            //}
+            if (!string.IsNullOrEmpty(currentUserName))
+            {
+                return RedirectToAction("All", "Employee");
+            }
 
             return View();
         }

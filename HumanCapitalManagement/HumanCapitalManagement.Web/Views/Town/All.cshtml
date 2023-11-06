@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TownViewModel>
+@using static HumanCapitalManagement.Common.GeneralConstants;
+
+@{
+    ViewBag.Title = "Towns of Employees";
+    string currentUserRole = this.Context.Session.GetString("Role")!;
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var t in Model)
+    {
+        <div class="card col-4 mb-2 ms-2" style="width: 20rem; ">
+            <div class="card-body">
+                <img class="card-img-top" style="width: 18rem;" src=@t.ImgUrl alt="Town Image">
+                <h5 class="card-title mt-1">@t.Name</h5>
+            </div>
+
+            <a asp-controller="Town" asp-action="Details" asp-route-id="@t.Id" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">View Details</a>
+        </div>
+    }
+    @if (!Model.Any())
+    {
+        <p>No towns added yet!</p>
+    }
+
+    @if (currentUserRole == AdminRoleName)
+    {
+        <a asp-controller="Town" asp-action="Add" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">Add Town</a>
+    }
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,7 +1,7 @@
 ﻿using HumanCapitalManagement.Web.ViewModels.Role;
-using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Json;
 using static HumanCapitalManagement.Common.GeneralConstants;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace HumanCapitalManagement.Web.Controllers
 {
@@ -30,12 +30,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             AddRoleViewModel roleModel = new AddRoleViewModel();
@@ -61,7 +61,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return this.BadRequest();
+                    return View("BadRequest");
                 }
 
                 return RedirectToAction("All", "Role");

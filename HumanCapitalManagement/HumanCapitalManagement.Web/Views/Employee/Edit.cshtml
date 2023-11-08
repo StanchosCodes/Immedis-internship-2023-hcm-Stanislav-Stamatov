@@ -7,8 +7,7 @@
 
 <div class="row d-flex align-items-center justify-content-center">
     <div class="col-md-4">
-        <form id="registerForm" method="post">
-            <h2 class="text-center">Edit your information</h2>
+        <form method="post" id="myForm" onsubmit="notify(event)">
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating mb-2">
@@ -88,4 +87,20 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function notify(e) {
+            e = e || window.event;
+            e.preventDefault();
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Succesfully edited information!',
+                showConfirmButton: false,
+                timer: 1500
+            }).then((result) => {
+                const myForm = document.getElementById("myForm");
+                myForm.submit();
+            })
+        }
+    </script>
 }

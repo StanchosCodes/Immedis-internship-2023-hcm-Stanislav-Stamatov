@@ -1,10 +1,5 @@
-﻿using HumanCapitalManagement.Web.ViewModels.Department;
-using HumanCapitalManagement.Web.ViewModels.Town;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HumanCapitalManagement.Web.ViewModels.Town;
+using HumanCapitalManagement.Web.ViewModels.Department;
 
 namespace HumanCapitalManagement.Web.ViewModels.Employee
 {

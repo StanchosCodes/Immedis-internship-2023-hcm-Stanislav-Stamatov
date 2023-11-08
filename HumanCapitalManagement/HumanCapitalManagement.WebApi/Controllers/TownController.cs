@@ -1,9 +1,8 @@
-﻿using HumanCapitalManagement.Data.Models;
+﻿using HumanCapitalManagement.Web.ViewModels.Town;
 using HumanCapitalManagement.Services.Data.Interfaces;
-using HumanCapitalManagement.Web.ViewModels.Town;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HumanCapitalManagement.WebApi.Controllers
 {

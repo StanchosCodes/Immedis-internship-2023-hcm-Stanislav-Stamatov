@@ -1,7 +1,7 @@
 ﻿using HumanCapitalManagement.Web.ViewModels.Town;
-using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 using static HumanCapitalManagement.Common.GeneralConstants;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace HumanCapitalManagement.Web.Controllers
 {
@@ -21,7 +21,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -39,13 +39,23 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
             this.apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-            TownDetailsViewModel? townDetails = await this.apiClient.GetFromJsonAsync<TownDetailsViewModel>($"town/{id}");
+            TownDetailsViewModel? townDetails = new TownDetailsViewModel();
+
+            try
+            {
+                townDetails = await this.apiClient
+                    .GetFromJsonAsync<TownDetailsViewModel>($"town/{id}");
+            }
+            catch (Exception)
+            {
+                return View("NotFound");
+            }
 
             return View(townDetails);
         }
@@ -58,12 +68,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             TownViewModel townModel = new TownViewModel();
@@ -88,7 +98,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return this.BadRequest();
+                    return View("BadRequest");
                 }
 
                 return RedirectToAction("All", "Town");
@@ -109,27 +119,32 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
             this.apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-            TownDetailsViewModel? townToEdit = await this.apiClient.GetFromJsonAsync<TownDetailsViewModel>($"town/{id}");
+            TownDetailsViewModel? townToEdit = new TownDetailsViewModel();
 
-            if (townToEdit == null)
+            try
             {
-                return this.BadRequest();
+                townToEdit = await this.apiClient
+                    .GetFromJsonAsync<TownDetailsViewModel>($"town/{id}");
+            }
+            catch (Exception)
+            {
+                return View("NotFound");
             }
 
             TownViewModel townModel = new TownViewModel()
             {
-                Name = townToEdit.Name,
+                Name = townToEdit!.Name,
                 ImgUrl = townToEdit.ImgUrl
             };
 
@@ -151,7 +166,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!editResponse.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("Details", "Town", new {id = townModel.Id});
@@ -164,12 +179,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -186,7 +201,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!isDeleted)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("All", "Town");

@@ -12,14 +12,14 @@
 <hr />
 
 <div class="row">
-    <div class="card w-50">
-        <div class="card-body">
+    <div class="card w-50 text-center">
+        <div class="card-body text-center">
             <h3 class="card-title text-center mb-5">@Model.Title</h3>
-            <p class="card-text">Manager: @Model.ManagerUsername - @Model.ManagerFirstName @Model.ManagerMiddleName @Model.ManagerLastName</p>
+            <p class="card-text"><b>Manager:</b> @Model.ManagerUsername - @Model.ManagerFirstName @Model.ManagerMiddleName @Model.ManagerLastName</p>
             
             @if (Model.Employees.Any())
             {
-                <p class="mb-0">Number of employees working in this department: @Model.Employees.Count()</p>
+                <p class="mb-0"><b>Employees working in this department:</b> @Model.Employees.Count()</p>
             }
 
             else
@@ -28,21 +28,56 @@
             }
         </div>
 
-        @if (currentUserRole == AdminRoleName)
-        {    
-            <a asp-controller="Department" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Edit</a>
-            <a asp-controller="Department" asp-action="AllAvailable" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Move employees from other departments</a>
-            <form class="input-group-sm " asp-controller="Department" asp-action="Delete" asp-route-id="@Model.Id">
-                <input type="submit" value="Delete the department" class="btn btn-danger mb-2 w-40 p-3 fw-bold text" />
-            </form>
-        }
-
         <a asp-controller="Department" asp-action="All" class="btn btn-outline-info mb-2 mt-5 w-100 p-3 fw-bold">Back to all Departments</a>
         <a asp-controller="Department" asp-action="AllEmployees" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">All employees in this department</a>
 
+        @if (currentUserRole == AdminRoleName)
+        {    
+            <a asp-controller="Department" asp-action="AllAvailable" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Move employees from other departments</a>
+            <a asp-controller="Department" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Edit</a>
+            <form class="input-group-sm" id="myForm" onsubmit="customConfirm(event)" asp-controller="Department" asp-action="Delete" asp-route-id="@Model.Id">
+                <input type="submit" value="Delete the department" class="btn btn-danger mb-2 w-40 p-3 fw-bold text" />
+            </form>
+        }
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function customConfirm(e) {
+            e = e || window.event;
+            e.preventDefault();
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: true,
+                cancelButtonColor: '#d33'
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const myForm = document.getElementById("myForm");
+                    myForm.submit();
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'The department is safe :)',
+                        'error')
+                }
+            })
+        }
+    </script>
 }

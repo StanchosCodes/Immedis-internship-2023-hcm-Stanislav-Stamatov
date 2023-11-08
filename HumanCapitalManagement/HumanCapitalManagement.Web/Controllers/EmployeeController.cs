@@ -1,18 +1,8 @@
-﻿using HumanCapitalManagement.Web.ViewModels.Department;
+﻿using HumanCapitalManagement.Web.ViewModels.Role;
 using HumanCapitalManagement.Web.ViewModels.Employee;
-using HumanCapitalManagement.Web.ViewModels.Project;
-using HumanCapitalManagement.Web.ViewModels.Role;
-using HumanCapitalManagement.Web.ViewModels.Town;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
-using System.Numerics;
-using System.Text.Json;
 using static HumanCapitalManagement.Common.GeneralConstants;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace HumanCapitalManagement.Web.Controllers
 {
@@ -32,7 +22,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -51,14 +41,23 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
             this.apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-            EmployeeDetailsViewModel? employeeDetails = await this.apiClient
-                .GetFromJsonAsync<EmployeeDetailsViewModel>($"Employee/{id}");
+            EmployeeDetailsViewModel? employeeDetails = new EmployeeDetailsViewModel();
+
+            try
+            {
+                employeeDetails = await this.apiClient
+                    .GetFromJsonAsync<EmployeeDetailsViewModel>($"Employee/{id}");
+            }
+            catch (Exception)
+            {
+                return View("NotFound");
+            }
 
             return View(employeeDetails);
         }
@@ -100,7 +99,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return this.BadRequest();
+                    return View("BadRequest");
                 }
 
                 return RedirectToAction("Login", "Employee");
@@ -192,7 +191,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -210,15 +209,19 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
-            EditViewModel? editModel = await this.apiClient
-                .GetFromJsonAsync<EditViewModel>($"Employee/GenerateEditModel/{id}");
+            EditViewModel? editModel = new EditViewModel();
 
-            if (editModel!.Username == null)
+            try
             {
-                return this.NotFound();
+                editModel = await this.apiClient
+                    .GetFromJsonAsync<EditViewModel>($"Employee/GenerateEditModel/{id}");
+            }
+            catch (Exception)
+            {
+                return View("NotFound");
             }
 
             string currentUserRole = this.HttpContext.Session.GetString("Role")!;
@@ -232,7 +235,7 @@ namespace HumanCapitalManagement.Web.Controllers
                     return View(editModel);
                 }
 
-                return this.Forbid();
+                return View("Forbidden");
             }
             else
             {
@@ -242,7 +245,7 @@ namespace HumanCapitalManagement.Web.Controllers
                 }
             }
 
-            return this.Forbid();
+            return View("Forbidden");
         }
 
         [HttpPost]
@@ -268,7 +271,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("Details", "Employee", new { id = id });
@@ -281,12 +284,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -304,12 +307,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -326,7 +329,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!isDeleted)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("All", "Employee");

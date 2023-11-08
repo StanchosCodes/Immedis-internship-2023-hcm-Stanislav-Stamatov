@@ -1,7 +1,7 @@
 using HumanCapitalManagement.Web.Infrastructure;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

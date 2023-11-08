@@ -1,10 +1,11 @@
 using HumanCapitalManagement.Data;
 using HumanCapitalManagement.Services.Data;
 using HumanCapitalManagement.Services.Data.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 

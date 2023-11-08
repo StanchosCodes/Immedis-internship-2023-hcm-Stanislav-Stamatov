@@ -1,9 +1,8 @@
-﻿using HumanCapitalManagement.Web.ViewModels.Department;
-using HumanCapitalManagement.Web.ViewModels.Employee;
-using HumanCapitalManagement.Web.ViewModels.Project;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using HumanCapitalManagement.Web.ViewModels.Employee;
+using HumanCapitalManagement.Web.ViewModels.Department;
 using static HumanCapitalManagement.Common.GeneralConstants;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace HumanCapitalManagement.Web.Controllers
 {
@@ -23,7 +22,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -42,13 +41,23 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
             this.apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-            DepartmentViewModel? department = await this.apiClient.GetFromJsonAsync<DepartmentViewModel>($"Department/{id}");
+            DepartmentViewModel? department = new DepartmentViewModel();
+
+            try
+            {
+                department = await this.apiClient
+                    .GetFromJsonAsync<DepartmentViewModel>($"Department/{id}");
+            }
+            catch (Exception)
+            {
+                return View("NotFound");
+            }
 
             return View(department);
         }
@@ -61,12 +70,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -105,7 +114,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return this.BadRequest();
+                    return View("BadRequest");
                 }
 
                 return RedirectToAction("All", "Department");
@@ -126,23 +135,27 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
             this.apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-            DepartmentViewModel? department = await this.apiClient
-                .GetFromJsonAsync<DepartmentViewModel>($"Department/{id}");
+            DepartmentViewModel? department = new DepartmentViewModel();
 
-            if (department == null)
+            try
             {
-                return this.BadRequest();
+                department = await this.apiClient
+                    .GetFromJsonAsync<DepartmentViewModel>($"Department/{id}");
+            }
+            catch (Exception)
+            {
+                return View("NotFound");
             }
 
             HashSet<EmployeeViewModel>? managers = await this.apiClient
@@ -150,7 +163,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             DepartmentAddEditViewModel editModel = new DepartmentAddEditViewModel()
             {
-                Title = department.Title,
+                Title = department!.Title,
                 ManagerId = department.ManagerId,
                 Managers = managers!
             };
@@ -181,7 +194,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return this.BadRequest();
+                    return View("BadRequest");
                 }
 
                 return RedirectToAction("Details", "Department", new { id = id });
@@ -201,12 +214,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -219,7 +232,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!addResponse.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("AllAvailable", "Department");
@@ -231,7 +244,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -250,12 +263,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -274,12 +287,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -296,7 +309,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!isDeleted)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("All", "Department");

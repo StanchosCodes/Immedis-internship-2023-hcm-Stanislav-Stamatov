@@ -2,7 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+<div class="text-center home-container">
+    <h1 class="display-1 text-black">You can be part of our team.</h1>
+    <h2 class="display-2">Just join!</h2>
+    <p class="text-secondary">Human Capital Management System is a place for both, regular employees and managers of teams.</p>
+    <p class="text-secondary">Here you can manage your departments, projects and see detailed information about it.</p>
+    <h3 class="display-3" style="color:dodgerblue">Let's get started!</h3>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        gsap.from(".home-container", { opacity: 0, duration: 1, delay: 0.5, y: -50 });
+        gsap.from("h1", { opacity: 0, duration: 1, delay: 1, y: -50 });
+        gsap.from("h2", { opacity: 0, duration: 1, delay: 0.8, y: -40 });
+        gsap.from("p", { opacity: 0, duration: 1, delay: 0.5, y: -30 });
+    });
+</script>

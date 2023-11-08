@@ -1,9 +1,8 @@
-﻿using HumanCapitalManagement.Data.Models;
+﻿using HumanCapitalManagement.Web.ViewModels.Project;
 using HumanCapitalManagement.Services.Data.Interfaces;
-using HumanCapitalManagement.Web.ViewModels.Project;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HumanCapitalManagement.WebApi.Controllers
 {

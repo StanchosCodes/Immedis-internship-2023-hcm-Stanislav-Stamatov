@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using HumanCapitalManagement.Data.Models;
+﻿using HumanCapitalManagement.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HumanCapitalManagement.Data;

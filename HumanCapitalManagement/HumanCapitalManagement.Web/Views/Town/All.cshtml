@@ -14,8 +14,8 @@
     @foreach (var t in Model)
     {
         <div class="card col-4 mb-2 ms-2" style="width: 20rem; ">
+            <img class="card-img-top mt-2" style="width: 100%; height: 15vw; object-fit: cover;" src=@t.ImgUrl alt="Town Image">
             <div class="card-body">
-                <img class="card-img-top" style="width: 18rem;" src=@t.ImgUrl alt="Town Image">
                 <h5 class="card-title mt-1">@t.Name</h5>
             </div>
 

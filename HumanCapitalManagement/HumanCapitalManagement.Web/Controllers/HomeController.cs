@@ -1,7 +1,7 @@
 ﻿using HumanCapitalManagement.Web.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+
 using System.Diagnostics;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HumanCapitalManagement.Web.Controllers
 {

@@ -16,8 +16,8 @@
         <div class="card col-4 mb-2 ms-2" style="width: 20rem; ">
             <div class="card-body">
                 <h5 class="card-title mt-1">@d.Title</h5>
-                <p class="card-text">Manager: @d.ManagerUsername - @d.ManagerFirstName @d.ManagerMiddleName @d.ManagerLastName</p>
-                <p class="card-text">Employees in this department: @d.Employees.Count()</p>
+                <p class="card-text"><b>Manager:</b> @d.ManagerUsername - @d.ManagerFirstName @d.ManagerMiddleName @d.ManagerLastName</p>
+                    <p class="card-text"><b>Employees in this department:</b> @d.Employees.Count()</p>
             </div>
 
             <a asp-controller="Department" asp-action="Details" asp-route-id="@d.Id" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">View Details</a>

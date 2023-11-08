@@ -1,10 +1,4 @@
-﻿using HumanCapitalManagement.Data.Models;
-using HumanCapitalManagement.Web.ViewModels.Project;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HumanCapitalManagement.Web.ViewModels.Project;
 
 namespace HumanCapitalManagement.Services.Data.Interfaces
 {

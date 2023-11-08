@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace HumanCapitalManagement.Data.Models;
+﻿namespace HumanCapitalManagement.Data.Models;
 
 public partial class Role
 {

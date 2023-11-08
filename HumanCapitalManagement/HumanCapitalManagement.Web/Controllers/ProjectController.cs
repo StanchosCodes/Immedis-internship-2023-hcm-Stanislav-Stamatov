@@ -1,6 +1,7 @@
 ﻿using HumanCapitalManagement.Web.ViewModels.Project;
-using Microsoft.AspNetCore.Mvc;
 using static HumanCapitalManagement.Common.GeneralConstants;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace HumanCapitalManagement.Web.Controllers
 {
@@ -20,7 +21,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -39,14 +40,23 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
             this.apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-            ProjectDetailsViewModel? projectDetails = await this.apiClient
-                .GetFromJsonAsync<ProjectDetailsViewModel>($"Project/{id}");
+            ProjectDetailsViewModel? projectDetails = new ProjectDetailsViewModel();
+
+            try
+            {
+                projectDetails = await this.apiClient
+                    .GetFromJsonAsync<ProjectDetailsViewModel>($"Project/{id}");
+            }
+            catch (Exception)
+            {
+                return View("NotFound");
+            }
 
             return View(projectDetails);
         }
@@ -59,12 +69,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             AddEditProjectViewModel projectModel = new AddEditProjectViewModel();
@@ -89,7 +99,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return this.BadRequest();
+                    return View("BadRequest");
                 }
 
                 return RedirectToAction("All", "Project");
@@ -110,29 +120,35 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
             this.apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-            ProjectDetailsViewModel? project = await this.apiClient.GetFromJsonAsync<ProjectDetailsViewModel>($"Project/{id}");
+            ProjectDetailsViewModel? project = new ProjectDetailsViewModel();
 
-            if (project == null)
+            try
             {
-                return this.BadRequest();
+                project = await this.apiClient
+                    .GetFromJsonAsync<ProjectDetailsViewModel>($"Project/{id}");
+            }
+            catch (Exception)
+            {
+                return View("NotFound");
             }
 
             AddEditProjectViewModel projectModel = new AddEditProjectViewModel()
             {
-                Title = project.Title,
+                Title = project!.Title,
                 Description = project.Description,
                 Salary = project.Salary,
+                ImgUrl = project.ImgUrl,
                 StartDate = DateTime.Parse(project.StartDate),
                 EndDate = DateTime.Parse(project.EndDate)
             };
@@ -156,7 +172,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("Details", "Project", new { id = id });
@@ -168,7 +184,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUsername))
             {
-                return this.BadRequest();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -178,7 +194,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             int employeeId = await response.Content.ReadFromJsonAsync<int>();
@@ -187,7 +203,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!assignResponse.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("AllAssigned", "Project");
@@ -199,7 +215,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUsername))
             {
-                return this.BadRequest();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -209,7 +225,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             int employeeId = await response.Content.ReadFromJsonAsync<int>();
@@ -218,7 +234,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!leaveResponse.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("AllAssigned", "Project");
@@ -230,7 +246,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUsername))
             {
-                return this.BadRequest();
+                return View("Unauthorized");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -240,7 +256,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             int employeeId = await response.Content.ReadFromJsonAsync<int>();
@@ -249,7 +265,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!projectsResponse.IsSuccessStatusCode)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             IEnumerable<ProjectViewModel>? allAssignedProjects = await projectsResponse
@@ -266,12 +282,12 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (String.IsNullOrEmpty(currentUserName))
             {
-                return this.Unauthorized();
+                return View("Unauthorized");
             }
 
             if (currentUserRole != AdminRoleName)
             {
-                return this.Forbid();
+                return View("Forbidden");
             }
 
             string token = this.HttpContext.Session.GetString("JWT")!;
@@ -288,7 +304,7 @@ namespace HumanCapitalManagement.Web.Controllers
 
             if (!isDeleted)
             {
-                return this.BadRequest();
+                return View("BadRequest");
             }
 
             return RedirectToAction("All", "Project");

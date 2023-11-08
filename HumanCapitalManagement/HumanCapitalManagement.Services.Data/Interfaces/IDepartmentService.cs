@@ -1,10 +1,5 @@
 ﻿using HumanCapitalManagement.Web.ViewModels.Department;
 using HumanCapitalManagement.Web.ViewModels.Employee;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HumanCapitalManagement.Services.Data.Interfaces
 {

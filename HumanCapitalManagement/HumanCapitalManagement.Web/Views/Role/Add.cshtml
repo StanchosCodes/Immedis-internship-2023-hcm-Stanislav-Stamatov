@@ -25,4 +25,29 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function notify(e) {
+            e = e || window.event;
+            e.preventDefault();
+            const myForm = document.getElementById("myForm");
+            const fieldOne = myForm.childNodes[1].childNodes[3].classList.contains("valid");
+            let isValid = false;
+
+            if (fieldOne) {
+                isValid = true;
+            }
+
+            if (isValid) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Succesfully added role!',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then((result) => {
+                    myForm.submit();
+                });
+            }
+        }
+    </script>
 }

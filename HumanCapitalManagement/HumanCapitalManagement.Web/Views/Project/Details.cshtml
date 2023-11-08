@@ -12,22 +12,22 @@
 <hr />
 
 <div class="row">
-    <div class="card w-50">
+    <div class="card w-50 text-center">
+        <img class="card-img-top mt-2 text-center" style="width: 50%; height: 15vw; object-fit: cover;" src=@Model.ImgUrl alt="Project Image">
         <div class="card-body">
-            <img class="card-img-top" style="width: 18rem;" src=@Model.ImgUrl alt="Project Image">
             <h3 class="card-title text-center mb-5">@Model.Title</h3>
             <p class="card-text">@Model.Description</p>
-            <p class="card-text">Salary for the project: $@Model.Salary</p>
-            <p class="card-text">Start date: @Model.StartDate</p>
-            <p class="card-text">End date: @Model.EndDate</p>
-            <p class="mb-0"><span class="fw-bold mt-5">Employees asigned to this project: </span>@Model.Employees.Count()</p>
+            <p class="card-text"><b>Salary for the project:</b> $@Model.Salary</p>
+            <p class="card-text"><b>Start date:</b> @Model.StartDate</p>
+            <p class="card-text"><b>End date:</b> @Model.EndDate</p>
+            <p class="mb-0"><span class="mt-5"><b>Employees asigned to this project:</b> </span>@Model.Employees.Count()</p>
 
             @foreach (var e in Model.Employees)
             {
-                <div class="card col-4 mb-2 ms-2" style="width: 20rem; ">
-                    <div class="card-body">
-                        <h5 class="card-title mt-1">Name: @e.FirstName @e.MiddleName @e.LastName</h5>
-                        <h5 class="card-title mt-1">Username: @e.Username</h5>
+                <div class="card text-center" style="width: 20rem; ">
+                    <div class="card-body text-center">
+                        <p class="card-title mt-1"><b>Name:</b> @e.FirstName @e.MiddleName @e.LastName</p>
+                        <p class="card-title mt-1"><b>Username:</b> @e.Username</p>
                     </div>
                 </div>
             }
@@ -40,6 +40,11 @@
 
         <a asp-controller="Project" asp-action="All" class="btn btn-outline-info mb-2 mt-5 w-100 p-3 fw-bold">Back to all projects</a>
 
+        @if (currentUserRole == AdminRoleName)
+        {
+            <a asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Edit</a>
+        }
+
         @if (!Model.Employees.Any(e => e.Username == currentUsername))
         {
             <form class="input-group-sm" asp-route-id="@Model.Id" asp-controller="Project" asp-action="Assign" method="post">
@@ -48,16 +53,14 @@
         }
         else
         {
-        <form class="input-group-sm" asp-route-id="@Model.Id" asp-controller="Project" asp-action="Leave" method="post">
-            <input type="submit" value="Leave the project" class="fs-6 btn btn-success mb-3 p-2" />
-        </form>
+            <form class="input-group-sm" asp-route-id="@Model.Id" asp-controller="Project" asp-action="Leave" method="post">
+                <input type="submit" value="Leave the project" class="fs-6 btn btn-success mb-3 p-2" />
+            </form>
         }
 
         @if (currentUserRole == AdminRoleName)
         {
-            <a asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Edit</a>
-
-            <form class="input-group-sm " asp-controller="Project" asp-action="Delete" asp-route-id="@Model.Id">
+            <form class="input-group-sm" id="myForm" onsubmit="customConfirm(event)" asp-controller="Project" asp-action="Delete" asp-route-id="@Model.Id">
                 <input type="submit" value="Delete the project" class="btn btn-danger mb-2 w-40 p-3 fw-bold text" />
             </form>
         }
@@ -67,4 +70,40 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function customConfirm(e) {
+            e = e || window.event;
+            e.preventDefault();
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: true,
+                cancelButtonColor: '#d33'
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const myForm = document.getElementById("myForm");
+                    myForm.submit();
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'The project is safe :)',
+                        'error')
+                }
+            })
+        }
+    </script>
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HumanCapitalManagement.Web.ViewModels.Project
+﻿namespace HumanCapitalManagement.Web.ViewModels.Project
 {
     public class ProjectViewModel
     {

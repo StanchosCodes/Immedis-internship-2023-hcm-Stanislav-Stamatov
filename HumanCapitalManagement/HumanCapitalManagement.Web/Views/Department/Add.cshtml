@@ -7,7 +7,7 @@
 
 <div class="row d-flex align-items-center justify-content-center">
     <div class="col-md-4">
-        <form id="addForm" method="post">
+        <form method="post" onsubmit="notify(event)" id="myForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating mb-2">
                 <input asp-for="Title" class="form-control" autocomplete="title" aria-required="true" />
@@ -31,4 +31,29 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function notify(e) {
+            e = e || window.event;
+            e.preventDefault();
+            const myForm = document.getElementById("myForm");
+            const fieldOne = myForm.childNodes[1].childNodes[1].classList.contains("valid");
+            let isValid = false;
+
+            if (fieldOne) {
+                isValid = true;
+            }
+
+            if (isValid) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Succesfully added department!',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then((result) => {
+                    myForm.submit();
+                });
+            }
+        }
+    </script>
 }

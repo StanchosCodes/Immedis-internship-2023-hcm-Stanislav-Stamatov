@@ -7,7 +7,7 @@
 
 <div class="row d-flex align-items-center justify-content-center">
     <div class="col-md-4">
-        <form id="editForm" method="post">
+        <form method="post" id="myForm" onsubmit="notify(event)">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating mb-2">
                 <input asp-for="Title" class="form-control" autocomplete="title" aria-required="true" />
@@ -31,4 +31,20 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function notify(e) {
+            e = e || window.event;
+            e.preventDefault();
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Succesfully edited department!',
+                showConfirmButton: false,
+                timer: 1500
+            }).then((result) => {
+                const myForm = document.getElementById("myForm");
+                myForm.submit();
+            })
+        }
+    </script>
 }

@@ -1,14 +1,9 @@
 ﻿using HumanCapitalManagement.Data;
+using Microsoft.EntityFrameworkCore;
 using HumanCapitalManagement.Data.Models;
+using HumanCapitalManagement.Web.ViewModels.Employee;
 using HumanCapitalManagement.Services.Data.Interfaces;
 using HumanCapitalManagement.Web.ViewModels.Department;
-using HumanCapitalManagement.Web.ViewModels.Employee;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HumanCapitalManagement.Services.Data
 {

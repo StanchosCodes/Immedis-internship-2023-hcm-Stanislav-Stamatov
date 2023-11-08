@@ -1,8 +1,9 @@
 ﻿using HumanCapitalManagement.Data;
 using HumanCapitalManagement.Data.Models;
-using HumanCapitalManagement.Services.Data.Interfaces;
-using HumanCapitalManagement.Web.ViewModels.Employee;
 using HumanCapitalManagement.Web.ViewModels.Town;
+using HumanCapitalManagement.Web.ViewModels.Employee;
+using HumanCapitalManagement.Services.Data.Interfaces;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace HumanCapitalManagement.Services.Data

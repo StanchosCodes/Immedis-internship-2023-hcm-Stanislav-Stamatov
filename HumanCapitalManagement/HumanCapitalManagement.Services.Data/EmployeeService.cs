@@ -1,23 +1,19 @@
-﻿using BCrypt.Net;
-using HumanCapitalManagement.Data;
+﻿using HumanCapitalManagement.Data;
 using HumanCapitalManagement.Data.Models;
-using HumanCapitalManagement.Services.Data.Interfaces;
-using HumanCapitalManagement.Web.ViewModels.Employee;
-using HumanCapitalManagement.Web.ViewModels.Project;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Claims;
-using HumanCapitalManagement.Web.ViewModels.Department;
-using HumanCapitalManagement.Web.ViewModels.Town;
 using HumanCapitalManagement.Web.ViewModels.Role;
+using HumanCapitalManagement.Web.ViewModels.Town;
+using HumanCapitalManagement.Web.ViewModels.Project;
+using HumanCapitalManagement.Web.ViewModels.Employee;
+using HumanCapitalManagement.Services.Data.Interfaces;
+using HumanCapitalManagement.Web.ViewModels.Department;
 using static HumanCapitalManagement.Common.GeneralConstants;
+
+using System.Text;
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.Configuration;
 
 namespace HumanCapitalManagement.Services.Data
 {

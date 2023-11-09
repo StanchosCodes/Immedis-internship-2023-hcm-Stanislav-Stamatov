@@ -56,16 +56,30 @@
         function notify(e) {
             e = e || window.event;
             e.preventDefault();
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Succesfully edited project!',
-                showConfirmButton: false,
-                timer: 1500
-            }).then((result) => {
-                const myForm = document.getElementById("myForm");
-                myForm.submit();
-            })
+            const myForm = document.getElementById("myForm");
+            const fieldOne = myForm.childNodes[1].childNodes[1].childNodes[3].classList.contains("valid");
+            const fieldTwo = myForm.childNodes[1].childNodes[3].childNodes[3].classList.contains("valid");
+            const fieldThree = myForm.childNodes[1].childNodes[5].childNodes[3].classList.contains("valid");
+            const fieldFour = myForm.childNodes[1].childNodes[7].childNodes[3].classList.contains("valid");
+            const fieldFive = myForm.childNodes[1].childNodes[9].childNodes[3].classList.contains("valid");
+            const fieldSix = myForm.childNodes[1].childNodes[11].childNodes[3].classList.contains("valid");
+            let isValid = false;
+
+            if (fieldOne && fieldTwo && fieldThree && fieldFour && fieldFive && fieldSix) {
+                isValid = true;
+            }
+
+            if (isValid) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Succesfully edited project!',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then((result) => {
+                    myForm.submit();
+                });
+            }
         }
     </script>
 }

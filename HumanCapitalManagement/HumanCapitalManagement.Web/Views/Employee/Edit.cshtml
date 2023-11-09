@@ -91,16 +91,32 @@
         function notify(e) {
             e = e || window.event;
             e.preventDefault();
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Succesfully edited information!',
-                showConfirmButton: false,
-                timer: 1500
-            }).then((result) => {
-                const myForm = document.getElementById("myForm");
-                myForm.submit();
-            })
+            const myForm = document.getElementById("myForm");
+            const fieldOne = myForm.childNodes[3].childNodes[1].classList.contains("valid");
+            const fieldTwo = myForm.childNodes[5].childNodes[1].classList.contains("valid");
+            const fieldThree = myForm.childNodes[7].childNodes[1].classList.contains("valid");
+            const fieldFour = myForm.childNodes[9].childNodes[1].classList.contains("valid");
+            const fieldFive = myForm.childNodes[11].childNodes[1].classList.contains("valid");
+            const fieldSix = myForm.childNodes[13].childNodes[1].classList.contains("valid");
+            const fieldSeven = myForm.childNodes[15].childNodes[1].classList.contains("valid");
+            const fieldEight = myForm.childNodes[17].childNodes[1].classList.contains("valid");
+            let isValid = false;
+
+            if (fieldOne && fieldTwo && fieldThree && fieldFour && fieldFive && fieldSix && fieldSeven && fieldEight) {
+                isValid = true;
+            }
+
+            if (isValid) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Succesfully edited information!',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then((result) => {
+                    myForm.submit();
+                });
+            }
         }
     </script>
 }

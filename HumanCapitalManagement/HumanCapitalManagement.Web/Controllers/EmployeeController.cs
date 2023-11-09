@@ -65,7 +65,14 @@ namespace HumanCapitalManagement.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Register()
         {
-            RegisterHelperViewModel? registerCollections = await this.apiClient
+			string? currentUserName = this.HttpContext.Session.GetString("Username");
+
+			if (!string.IsNullOrEmpty(currentUserName))
+			{
+				return RedirectToAction("All", "Employee");
+			}
+
+			RegisterHelperViewModel? registerCollections = await this.apiClient
                 .GetFromJsonAsync<RegisterHelperViewModel>("Employee/GetCollections");
 
             RegisterViewModel registerModel = new RegisterViewModel()
@@ -115,7 +122,14 @@ namespace HumanCapitalManagement.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Login()
         {
-            IEnumerable<RoleViewModel>? allRoles = await this.apiClient
+			string? currentUserName = this.HttpContext.Session.GetString("Username");
+
+			if (!string.IsNullOrEmpty(currentUserName))
+			{
+				return RedirectToAction("All", "Employee");
+			}
+
+			IEnumerable<RoleViewModel>? allRoles = await this.apiClient
                 .GetFromJsonAsync<IEnumerable<RoleViewModel>>("Role");
 
             LoginViewModel loginModel = new LoginViewModel()

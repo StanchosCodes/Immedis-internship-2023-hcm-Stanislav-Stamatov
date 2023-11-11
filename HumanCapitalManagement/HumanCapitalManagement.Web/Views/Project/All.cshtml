@@ -13,7 +13,7 @@
 <div class="text-center row">
     @foreach (var p in Model)
     {
-        <div class="card text-center" style="width: 20rem; ">
+        <div class="card text-center mb-2 ms-2" style="width: 20rem; ">
             <img class="card-img-top mt-2 text-center" style="width: 100%; height: 15vw; object-fit: cover;" src=@p.ImgUrl alt="Project Image">
             <div class="card-body">
                 <h5 class="card-title mt-1">@p.Title</h5>
@@ -31,7 +31,9 @@
 
     @if (currentUserRole == AdminRoleName)
     {
-        <a asp-controller="Project" asp-action="Add" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">Add Project</a>
+        <div class="text-center">
+            <a asp-controller="Project" asp-action="Add" class="btn btn-outline-secondary mb-2 w-50 p-3 fw-bold">Add Project</a>
+        </div>
     }
 
 </div>

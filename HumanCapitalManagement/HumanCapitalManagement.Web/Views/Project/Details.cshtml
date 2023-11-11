@@ -13,7 +13,9 @@
 
 <div class="row">
     <div class="card w-50 text-center">
-        <img class="card-img-top mt-2 text-center" style="width: 50%; height: 15vw; object-fit: cover;" src=@Model.ImgUrl alt="Project Image">
+        <img class="mt-2 text-center"  src=@Model.ImgUrl alt="Project Image">
+    </div>
+    <div class="card w-50 text-center">
         <div class="card-body">
             <h3 class="card-title text-center mb-5">@Model.Title</h3>
             <p class="card-text">@Model.Description</p>
@@ -37,34 +39,34 @@
                 <p>No employees asigned to this project!</p>
             }
         </div>
+        <div>
+            <a asp-controller="Project" asp-action="All" class="btn btn-outline-info mb-2 mt-5 w-50 p-3 fw-bold">Back to all projects</a>
 
-        <a asp-controller="Project" asp-action="All" class="btn btn-outline-info mb-2 mt-5 w-100 p-3 fw-bold">Back to all projects</a>
+            @if (currentUserRole == AdminRoleName)
+            {
+                <a asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-50 p-3 fw-bold text">Edit</a>
+            }
 
-        @if (currentUserRole == AdminRoleName)
-        {
-            <a asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Edit</a>
-        }
+            @if (!Model.Employees.Any(e => e.Username == currentUsername))
+            {
+                <form class="input-group-sm" asp-route-id="@Model.Id" asp-controller="Project" asp-action="Assign" method="post">
+                    <input type="submit" value="Assign to project" class="fs-6 btn btn-success mb-2 p-2 w-50" />
+                </form>
+            }
+            else
+            {
+                <form class="input-group-sm" asp-route-id="@Model.Id" asp-controller="Project" asp-action="Leave" method="post">
+                    <input type="submit" value="Leave the project" class="fs-6 btn btn-danger mb-2 p-2 w-50" />
+                </form>
+            }
 
-        @if (!Model.Employees.Any(e => e.Username == currentUsername))
-        {
-            <form class="input-group-sm" asp-route-id="@Model.Id" asp-controller="Project" asp-action="Assign" method="post">
-                <input type="submit" value="Assign to project" class="fs-6 btn btn-success mb-3 p-2" />
-            </form>
-        }
-        else
-        {
-            <form class="input-group-sm" asp-route-id="@Model.Id" asp-controller="Project" asp-action="Leave" method="post">
-                <input type="submit" value="Leave the project" class="fs-6 btn btn-success mb-3 p-2" />
-            </form>
-        }
-
-        @if (currentUserRole == AdminRoleName)
-        {
-            <form class="input-group-sm" id="myForm" onsubmit="customConfirm(event)" asp-controller="Project" asp-action="Delete" asp-route-id="@Model.Id">
-                <input type="submit" value="Delete the project" class="btn btn-danger mb-2 w-40 p-3 fw-bold text" />
-            </form>
-        }
-
+            @if (currentUserRole == AdminRoleName)
+            {
+                <form class="input-group-sm" id="myForm" onsubmit="customConfirm(event)" asp-controller="Project" asp-action="Delete" asp-route-id="@Model.Id">
+                    <input type="submit" value="Delete the project" class="btn btn-danger mb-2 w-50 p-3 fw-bold text" />
+                </form>
+            }
+        </div>
     </div>
 </div>
 

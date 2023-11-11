@@ -30,7 +30,9 @@
 
     @if (currentUserRole == AdminRoleName)
     {
-        <a asp-controller="Department" asp-action="Add" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">Add Department</a>
+        <div class="text-center">
+            <a asp-controller="Department" asp-action="Add" class="btn btn-outline-secondary mb-2 w-50 p-3 fw-bold">Add Department</a>
+        </div>
     }
 
 </div>

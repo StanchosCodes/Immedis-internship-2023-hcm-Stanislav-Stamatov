@@ -19,11 +19,12 @@
                 <p class="card-text">Salary for the project: $@p.Salary</p>
                 <p class="card-text">End date of the project: @p.EndDate</p>
             </div>
-
-            <a asp-controller="Project" asp-action="Details" asp-route-id="@p.Id" class="btn btn-outline-secondary mb-2 w-100 p-3 fw-bold">View Details</a>
-            <form class="input-group-sm" asp-route-id="@p.Id" asp-controller="Project" asp-action="Leave" method="post">
-                <input type="submit" value="Leave the project" class="fs-6 btn btn-danger mb-3 p-2" />
-            </form>
+            <div class="text-center">
+                <a asp-controller="Project" asp-action="Details" asp-route-id="@p.Id" class="btn btn-outline-secondary mb-2 w-50 p-3 fw-bold">View Details</a>
+                <form class="input-group-sm" asp-route-id="@p.Id" asp-controller="Project" asp-action="Leave" method="post">
+                    <input type="submit" value="Leave the project" class="fs-6 btn btn-danger w-50 mb-3 p-2" />
+                </form>
+            </div>
         </div>
     }
     @if (!Model.Any())

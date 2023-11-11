@@ -11,10 +11,12 @@
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
-<div class="row text-center">
+<div class="row">
     <div class="card w-50">
+        <img class="mt-2 text-center" src=@Model.ImgUrl alt="Employee Image">
+    </div>
+    <div class="card w-50 text-center">
         <div class="card-body">
-            <img class="card-img-top" style="width: 50%; height: 15vw; object-fit: cover;" src=@Model.ImgUrl alt="Employee Image">
             <h3 class="card-title text-center mb-5">@Model.Username</h3>
             <p class="card-text"><b>First Name:</b> @Model.FirstName</p>
             <p class="card-text"><b>Middle Name:</b> @Model.MiddleName</p>
@@ -48,23 +50,24 @@
                 <p>Not involved in any project yet!</p>
             }
         </div>
+        <div class="text-center">
+            <a asp-controller="Employee" asp-action="All" class="btn btn-outline-info mb-2 mt-5 w-50 p-3 fw-bold">Back to all employees</a>
 
-        <a asp-controller="Employee" asp-action="All" class="btn btn-outline-info mb-2 mt-5 w-100 p-3 fw-bold">Back to all employees</a>
+            @if (currentUserRole == AdminRoleName && Model.Role != AdminRoleName)
+            {
+                <a asp-controller="Employee" asp-action="MakeAdmin" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-50 p-3 fw-bold text">Make Admin</a>
+            }
 
-        @if (currentUserRole == AdminRoleName && Model.Role != AdminRoleName)
-        {
-            <a asp-controller="Employee" asp-action="MakeAdmin" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Make Admin</a>
-        }
+            @if (currentUserRole == AdminRoleName && (Model.Role != AdminRoleName || Model.Username == currentUserName) || 
+                (currentUserRole == EmployeeRoleName && currentUserName == Model.Username))
+            {
+                <a asp-controller="Employee" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-50 p-3 fw-bold text">Edit</a>
 
-        @if (currentUserRole == AdminRoleName && (Model.Role != AdminRoleName || Model.Username == currentUserName) || 
-            (currentUserRole == EmployeeRoleName && currentUserName == Model.Username))
-        {
-            <a asp-controller="Employee" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-40 p-3 fw-bold text">Edit</a>
-
-            <form class="input-group-sm" id="myForm" onsubmit="customConfirm(event)" asp-controller="Employee" asp-action="Delete" asp-route-id="@Model.Id">
-                <input type="submit" value="Delete the employee" class="btn btn-danger mb-2 w-40 p-3 fw-bold text" />
-            </form>
-        }
+                <form class="input-group-sm" id="myForm" onsubmit="customConfirm(event)" asp-controller="Employee" asp-action="Delete" asp-route-id="@Model.Id">
+                    <input type="submit" value="Delete the employee" class="btn btn-danger mb-2 w-50 p-3 fw-bold text" />
+                </form>
+            }
+        </div>
     </div>
 </div>
 

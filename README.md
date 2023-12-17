@@ -15,19 +15,19 @@ For the front-end part it's used bootstrap 5 and sweet alert modals with javascr
 
 # 📋 Used technologies
 
-Entity Framework Core 6
-ASP.NET Core 6
-ASP.NET Web API
-Swagger UI
-HTML5
-CSS3
-Bootstrap
-Limonte-sweetalert2
-JQuery
-JavaScript
-SOLID Principles
-MVC Design Pattern
-SQL Server - for Development
++ Entity Framework Core 6
++ ASP.NET Core 6
++ ASP.NET Web API
++ Swagger UI
++ HTML5
++ CSS3
++ Bootstrap
++ Limonte-sweetalert2
++ JQuery
++ JavaScript
++ SOLID Principles
++ MVC Design Pattern
++ SQL Server - for Development
 
 # 💼 Database
 When migrations are applied the database is seeded only with four employees, two of them are with employee role and the other two are admins. There are four departments, four projects and five towns. All realations are applied. When the app is up and running you can register a new user if you wish and explore.

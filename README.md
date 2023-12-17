@@ -65,8 +65,8 @@ When migrations are applied the database is seeded only with four employees, two
 
 ### All Towns and Town Details pages
 <p>
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/06c28c8a-aeb3-4d40-91c1-2a23c07d50c5" width="49%" />
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/599ab75c-bd87-44f4-a13a-a84a52bcbb2e" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/06c28c8a-aeb3-4d40-91c1-2a23c07d50c5" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/599ab75c-bd87-44f4-a13a-a84a52bcbb2e" width="49%" />
 </p>
 
 ### All Projects and Project Details pages

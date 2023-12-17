@@ -59,8 +59,8 @@ When migrations are applied the database is seeded only with four employees, two
 # Employee pages
 ### All Departments and Department Details pages
 <p>
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/c1b1071d-4dbe-4697-8fec-bdd4ea137637" width="49%" />
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/0b60a34f-8d51-4caa-8b5d-a3fb381b9ba3" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/c1b1071d-4dbe-4697-8fec-bdd4ea137637" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/0b60a34f-8d51-4caa-8b5d-a3fb381b9ba3" width="49%" />
 </p>
 
 ### All Towns and Town Details pages
@@ -71,8 +71,8 @@ When migrations are applied the database is seeded only with four employees, two
 
 ### All Projects and Project Details pages
 <p>
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/7fc80bfa-98c1-499d-a662-44772b1c4995" width="49%" />
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/efa48608-2f7d-41c4-a27d-6f7c62b19a9c" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/7fc80bfa-98c1-499d-a662-44772b1c4995" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/efa48608-2f7d-41c4-a27d-6f7c62b19a9c" width="49%" />
 </p>
 
 ### All Roles page
@@ -94,36 +94,36 @@ When migrations are applied the database is seeded only with four employees, two
 
 ### Department Details and Edit pages
 <p>
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/9dc63471-0112-4531-ba38-d6f1f19a089c" width="49%" />
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/bc07fd90-c753-4ab5-a45d-c8dc6c289add" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/9dc63471-0112-4531-ba38-d6f1f19a089c" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/bc07fd90-c753-4ab5-a45d-c8dc6c289add" width="49%" />
 </p>
 
 ### Project pages
 
 All Projects and Project Details pages
 <p>
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/2e849097-05d4-4b68-9af8-be5b5da46caf" width="49%" />
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/d8b007e2-0346-4312-9d2c-f547d12e4e46" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/2e849097-05d4-4b68-9af8-be5b5da46caf" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/d8b007e2-0346-4312-9d2c-f547d12e4e46" width="49%" />
 </p>
 
 Add and Edit Project pages
 <p>
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/f34eb26f-1d5b-435a-9909-a31337110d7c" width="49%" />
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/267f6346-7f33-46eb-80fe-c65b679ace2d" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/f34eb26f-1d5b-435a-9909-a31337110d7c" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/267f6346-7f33-46eb-80fe-c65b679ace2d" width="49%" />
 </p>
 
 ### Town pages
 
 All Towns and Town Details pages
 <p>
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/42b295bb-b315-493b-8a8c-950535e8b60b" width="49%" />
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/b8a57bf3-d3ee-4e95-b3e0-f55e665f1cba" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/42b295bb-b315-493b-8a8c-950535e8b60b" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/b8a57bf3-d3ee-4e95-b3e0-f55e665f1cba" width="49%" />
 </p>
 
 Add and Edit Town pages
 <p>
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/2623c86b-da7f-4349-b575-aaf8b5f7edc3" width="49%" />
-  <img src"https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/49f01b2c-d408-437f-96b9-24c0be97032a" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/2623c86b-da7f-4349-b575-aaf8b5f7edc3" width="49%" />
+  <img src="https://github.com/StanchosCodes/Immedis-internship-2023-hcm-Stanislav-Stamatov/assets/102748080/49f01b2c-d408-437f-96b9-24c0be97032a" width="49%" />
 </p>
 
 ### Roles pages
